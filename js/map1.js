@@ -1,8 +1,9 @@
 var map, heatmap;
 var markers =[];
+var windows =[];
 var bird = 'images/bird.png';
 var position;
-var topic = 'Jews';
+var topic = 'Discrimination';
 
 function initialize() {
 
@@ -50,31 +51,124 @@ function setTopic(newTopic){
 
 function drawFakeDataAround(){
   
-  var multiplierLat = 2;
-  var multiplierLong = 2;
+  var multiplierLat = 1;
+  var multiplierLong = 1.5;
   if(topic=='Protest'){
     multiplierLat = 0.3;
     multiplierLong=0.2;
   }
 
+  if(topic=='Shooting'){
+    multiplierLat = 0.05;
+    multiplierLong=0.05;
+  }
+
+  var msg1;
+  var msg2;
+  var msg3;
+  var msg4;
+
+  if(topic=='Protest'){
+    msg1='Lets protest against jews, get out of here!!!';
+    msg2='Lets smash cars!!!!';
+    msg3="Everyone stay calm!";
+    msg4="Wow, I really love pizza";
+  }
+
+  if(topic=='Discrimination'){
+    msg1='I hate the jews!';
+    msg2='Cannot understand why don-t fight back';
+    msg3="Stay safe everyone, peace around the world!";
+    msg4="Don't understand why people discriminate";
+  }
+
+  if(topic=='Shooting'){
+    msg1='Going on a rampage';
+    msg2='Attacking the school in Paris';
+    msg3="Everyone stay safe and stay away from the school!";
+    msg4="Stay safe everyone, there are maniacs out there";
+  }
+
+
+
   var fakeData = []
 
-  for(i=-25;i<25;i++){
-    fakeData.push({
-                    "latitude": position.lat()+i*0.0005*Math.random()*multiplierLat,
-                    "longitude": position.lng()+i*0.001*Math.random()*multiplierLong,
+  for(i=-20;i<20;i++){
+    fakeData.push(
+        { 
+          tweet: msg1, 
+          rating: "negative",
+          retweetsCount: 10,
+          favouritesCount:5,
+          user:"Joey",
+          latitude: position.lat()+i*0.0005*Math.random()*multiplierLat,
+          longitude: position.lng()+i*0.001*Math.random()*multiplierLong
+    });
+    
+    fakeData.push(
+        { 
+          tweet: msg2,
+          rating: "negative", 
+          retweetsCount: 15, 
+          favouritesCount:6, 
+          user:"Ryan",
+          latitude: position.lat()+i*0.0005*Math.random()*multiplierLat,
+          longitude: position.lng()+i*0.001*Math.random()*multiplierLong
+        });
+
+    fakeData.push(
+        {
+          tweet: msg4,
+          rating: "neutral",
+          retweetsCount: 10,
+          favouritesCount:5,
+          user:"Matt", 
+          latitude: position.lat()+i*0.0005*Math.random()*multiplierLat,
+          longitude: position.lng()+i*0.001*Math.random()*multiplierLong
+        });
+
+    fakeData.push(
+        { 
+          tweet: msg3,
+          rating: "positive", 
+          retweetsCount: 10,
+          favouritesCount:5, 
+          user:"Ben",
+          latitude: position.lat()+i*0.0005*Math.random()*multiplierLat,
+          longitude: position.lng()+i*0.001*Math.random()*multiplierLong
+        });
+                /*
+                {tweet: "big protest against the jews right now in paris, be careful out there", rating: "neutral", retweetsCount: 10, favouritesCount:5, user:"BenKraw" },
+                {tweet: "another example of why radical islam should be banned in france", rating: "negative", retweetsCount: 10, favouritesCount:5, user:"BenKraw" },
+                {tweet: "lets show some solidarity for our jewish brothers #supportisrael", rating: "positive", retweetsCount: 10, favouritesCount:5, user:"BenKraw" },
+                {tweet: "I support the jewish cause", rating: "positive", retweetsCount: 10, favouritesCount:5, user:"BenKraw" },
+                {tweet: "I won't let history repeat itself -- #neverforget", rating: "positive", retweetsCount: 10, favouritesCount:5, user:"BenKraw" },
+                {tweet: "let's stand together with israel guys", rating: "positive", retweetsCount: 10, favouritesCount:5, user:"BenKraw" },
+                {tweet: "I love pizza", rating: "neutral", retweetsCount: 10, favouritesCount:5, user:"BenKraw" }
+                    
                     "tweet": "Tweet Reguarding " +topic,
                     "retweetsCount": Math.abs(i), 
                     "favouritesCount": Math.abs(i),
                     "user": "user_"+i 
                   });
+                */
   }
 
+  console.log(fakeData);
   paintMap(fakeData);
 
 }
 
-function protestaSimulation(tweetsData){
+
+function getBackground(rating){
+  if(rating=='positive')
+    return '#B8FF94';
+  else if(rating=='negative')
+    return '#FF6666';
+  return '#DDDDAA';
+}
+
+function smallZoneSimulation(tweetsData){
 
   var mapData = [];
   var markerContent = '';
@@ -83,7 +177,9 @@ function protestaSimulation(tweetsData){
     var point = new google.maps.LatLng(tweet.latitude, tweet.longitude);
     mapData.push(point);
 
-    markerContent +=  '<div id="content">'+
+    var background = getBackground(tweet.rating);
+
+    markerContent +=  '<div id="content" style=\'background-color:'+background+'\';>'+ 
                         '<div id="siteNotice">'+
                         '</div>'+
                         '<h4 id="firstHeading" class="firstHeading">'+
@@ -91,8 +187,8 @@ function protestaSimulation(tweetsData){
                         '</h4>'+
                         '<div id="bodyContent">'+
                           '<p><b>'+tweet.tweet+'</b></p>'+
-                          '<p>Retweets: ' + tweet.retweetsCount + '</p>' +
-                          '<p>Favs: ' + tweet.favouritesCount + '</p>' +
+                          '<p><em>Retweets: ' + tweet.retweetsCount + '</em></p>' +
+                          '<p><em>Favs: ' + tweet.favouritesCount + '</em></p>' +
                         '</div>'+
                       '</div><hr>';
 
@@ -128,8 +224,8 @@ function paintMap(tweetsData) {
   var mapData = [];
   cleanMarkers();
 
-  if(topic=='Protest'){
-    protestaSimulation(tweetsData);
+  if(topic!="Discrimination"){
+    smallZoneSimulation(tweetsData);
     return;
   }
 
@@ -144,7 +240,11 @@ function paintMap(tweetsData) {
       icon: bird
     });
 
-    var contentString =  '<div id="content">'+
+    var background = getBackground(tweet.rating);
+
+
+
+    var contentString =  '<div id="content" style=\'background-color:'+background+'\';>'+ 
                             '<div id="siteNotice">'+
                             '</div>'+
                             '<h1 id="firstHeading" class="firstHeading">'+
@@ -163,7 +263,10 @@ function paintMap(tweetsData) {
         maxHeight: 500
     });
 
+    windows.push(infowindow);
+
     google.maps.event.addListener(marker, 'click', function() {
+      closeAllWindows();
       infowindow.open(map,marker);
     });
 
@@ -180,8 +283,15 @@ function cleanMarkers(){
   markers.forEach(function(marker){
     marker.setMap(null);
   })
-
   markers = [];
+  windows = [];
 }
+
+function closeAllWindows(){
+  windows.forEach(function(iWindow){
+    iWindow.close();
+  })
+}
+
 
 google.maps.event.addDomListener(window, 'load', initialize);
