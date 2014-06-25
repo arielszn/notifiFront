@@ -1,0 +1,15 @@
+.map-container {
+  border:2px solid green;
+  height:625px;
+}
+
+#map-canvas {
+	height: 100%;
+	margin: 0px;
+	padding: 0px
+}
+
+.bg-color{
+	background-color: #E6CC80;
+	width: 100%;
+}

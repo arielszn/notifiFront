@@ -1,0 +1,68 @@
+/* Space out content a bit */
+body {
+  padding: 0;
+  margin: 0; }
+
+body, h1, h2, h3, h4, input, select, textarea {
+  font-family: 'Inconsolata', arial, helvetica, sans-serif; }
+
+/* Custom page header */
+.header {
+  padding-left: 15px;
+  padding-right: 15px;
+  border-bottom: 1px solid #e5e5e5;
+  margin: auto auto;
+  padding: 8px; }
+  .header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding: 0; }
+    .header h3 .title {
+      position: relative;
+      top: -10px; }
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  background-image: url(../images/street.jpg);
+  background-size: 100% auto;
+  height: 440px;
+  padding: 0;
+  margin: 0; }
+  .jumbotron .play {
+    background-image: url(/images/google_play.png);
+    width: 225px;
+    height: 78px;
+    background-size: 100% 100%;
+    cursor: pointer;
+    float: right;
+    margin-top: 50px; }
+  .jumbotron .slogan {
+    float: left;
+    color: white;
+    font-size: 2.2em;
+    line-height: 1.0em;
+    text-align: left;
+    width: 360px;
+    padding: 50px 0;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); }
+  .jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px; }
+
+.marketing {
+  display: flex;
+  margin: auto auto; }
+  .marketing .feature {
+    flex: 1;
+    padding: 30px; }
+    .marketing .feature h4 {
+      font-size: 2.0em; }
+    .marketing .feature p {
+      font-size: 1.3em; }
+
+.map-container {
+  border: 2px solid green;
+  height: 400px; }
