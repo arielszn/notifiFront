@@ -7,7 +7,7 @@ var topic = 'Discrimination';
 
 function initialize() {
 
-  position = new google.maps.LatLng(48.8943515,2.3385841);
+  position = new google.maps.LatLng(48.837222,2.296691);
 
   var mapOptions = {
     center: position,
@@ -69,24 +69,24 @@ function drawFakeDataAround(){
   var msg4;
 
   if(topic=='Protest'){
-    msg1='Lets protest against jews, get out of here!!!';
-    msg2='Lets smash cars!!!!';
-    msg3="Everyone stay calm!";
-    msg4="Wow, I really love pizza";
+    msg1='Lets protest against Jews, kick them out!';
+    msg2='Lets smash the cars!';
+    msg3="Everyone stay calm, everything will be okay!";
+    msg4="Wow, the protest near Seine River is crazy!";
   }
 
   if(topic=='Discrimination'){
-    msg1='I hate the jews!';
-    msg2='Cannot understand why don-t fight back';
+    msg1='I hate the Jews!';
+    msg2='I can not understand why we dont fight back';
     msg3="Stay safe everyone, peace around the world!";
     msg4="Don't understand why people discriminate";
   }
 
   if(topic=='Shooting'){
-    msg1='Going on a rampage';
-    msg2='Attacking the school in Paris';
-    msg3="Everyone stay safe and stay away from the school!";
-    msg4="Stay safe everyone, there are maniacs out there";
+    msg1='I am going to go on a rampage!!';
+    msg2='I need to get revenge, against my enemies!';
+    msg3="Everyone stay safe and stay away from the shooting!";
+    msg4="Stay safe everyone, there are maniacs out there!";
   }
 
 
@@ -295,3 +295,5 @@ function closeAllWindows(){
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
