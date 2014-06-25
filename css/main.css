@@ -28,9 +28,12 @@ body, h1, h2, h3, h4, input, select, textarea {
   border-bottom: 1px solid #e5e5e5;
   background-image: url(../images/street.jpg);
   background-size: 100% auto;
-  height: 440px;
+  height: 100%;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  background-repeat: no-repeat;
+
+   }
   .jumbotron .play {
     background-image: url(/images/google_play.png);
     width: 225px;
