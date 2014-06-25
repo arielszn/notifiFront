@@ -9,14 +9,14 @@
       <link href='http://fonts.googleapis.com/css?family=Inconsolata|Reenie+Beanie|Just+Me+Again+Down+Here|Roboto+Condensed|Roboto|Roboto+Slab|Open+Sans|Open+Sans+Condensed:300|Indie+Flower|Coming+Soon|Rock+Salt' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="font-awesome/css/font-awesome.css" />
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/jquery.js"></script>
 
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/map.css">
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization"></script>
-<script src="js/map.js"></script>
+<script src="js/map1.js"></script>
    
   </head>
 
@@ -24,21 +24,19 @@
 <div class="header container bg-color">
   <ul class="nav nav-pills pull-right">
     <li class="active"><a href="index.html">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Contact</a></li>
   </ul>
     <a href="#/">
-  <h3 class="text-muted">
+  <h3 class="white">
       <span class="logo fa fa-2x fa-dot-circle-o"></span>
        <span class="title">
-      VIBE SONAR
+        Notifi
   </span>
   </h3>
         </a>
 
-    <button type="button" class="btn btn-primary" value="Anti Discrimination" onclick="tweetTopic('value')">Anti Discrimination</button>
-    <button type="button" class="btn btn-primary">Shootings</button>
-    <button type="button" class="btn btn-primary">Protest</button>
+    <button type="button" onClick="setTopic('discrimination');" class="btn btn-primary">Anti Discrimination</button>
+    <button type="button" onClick="setTopic('shootings');" class="btn btn-primary">Shootings</button>
+    <button type="button" onClick="setTopic('protest');" class="btn btn-primary">Protest</button>
 
 </div>
 
